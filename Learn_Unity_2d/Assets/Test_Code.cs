@@ -5,17 +5,22 @@ using System;
 
 public class Test_Code : MonoBehaviour
 {
-    int value = 109;
-    object objectValue;
-    int newValue;
+    int a;
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Test: ");
-        objectValue = value;
-        // Debug.Log(objectValue);
-        newValue = (int)objectValue;
-        Debug.Log("newValue: " + newValue);
+        ChangeA(ref a);
+        ChangeA(ref a);
+        ChangeA(ref a);
+
+       // Debug.Log(a); // a = 3
+    }
+
+    void ChangeA(ref int value)
+    {
+        value = 0;
+        value++;
     }
 
     // Update is called once per frame
