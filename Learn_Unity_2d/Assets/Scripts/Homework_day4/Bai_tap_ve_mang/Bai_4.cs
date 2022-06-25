@@ -46,6 +46,7 @@ namespace Learn_Unity_2d
             {
                 if (_array[i] % 2 != 0)
                 {
+                    Array.Resize(ref newArr, indexx + 1);
                     newArr[indexx] = _array[i];
                     indexx++;
                 }

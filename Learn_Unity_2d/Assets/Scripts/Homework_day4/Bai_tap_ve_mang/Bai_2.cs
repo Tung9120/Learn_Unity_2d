@@ -67,6 +67,7 @@ namespace Learn_Unity_2d
                 }
                 if (count == 0)
                 {
+                    Array.Resize(ref newArr, indexx + 1);
                     newArr[indexx] = pt01;
                     indexx++;
                 }

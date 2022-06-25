@@ -52,6 +52,7 @@ namespace Learn_Unity_2d
                 {
                     if (_array[i] == _array[j])
                     {
+                        Array.Resize(ref newArr, count + 1);
                         newArr[count] = _array[i];
                         count++;
                     }
