@@ -4,13 +4,12 @@ using UnityEngine;
 
 namespace Learn_Unity_2d
 {
-    public class BT1_buoi8 : MonoBehaviour
+    public class BT2_buoi8 : MonoBehaviour
     {
         // Start is called before the first frame update
         void Start()
         {
-            Cat cat = new Cat("Tom", "1", "ground", "meat");
-            Debug.Log(cat.Move());
+
         }
 
         // Update is called once per frame
@@ -20,7 +19,7 @@ namespace Learn_Unity_2d
         }
     }
 
-    public class Animal
+    public abstract class Animal_ABS
     {
         protected string typeName;
         protected string gender;
@@ -51,7 +50,7 @@ namespace Learn_Unity_2d
             set { food = value; }
         }
 
-        public Animal(string typeName, string gender, string habitat, string food)
+        public Animal_ABS(string typeName, string gender, string habitat, string food)
         {
             this.typeName = typeName;
             this.gender = gender;
@@ -59,34 +58,20 @@ namespace Learn_Unity_2d
             this.food = food;
         }
 
-        public virtual float[] Move(float x = 0, float y = 0)
-        {
-            float[] location = new float[2] { 0, 0 };
-            location[0] = x;
-            location[1] = y;
-            Debug.Log($"{this.typeName} is moving. \n Location of {this.typeName} is ({x}, {y})");
-            return location;
-        }
+        public abstract float[] Move(float x, float y);
 
-        public virtual string Eat(string food = "something")
-        {
-            Debug.Log($"{this.typeName} is eating {food}");
-            return food;
-        }
+        public abstract string Eat(string food = "something");
 
-        public virtual void Talk(string content = "something")
-        {
-            Debug.Log($"{this.typeName} is talking {content}");
-        }
+        public abstract void Talk(string content = "something");
     }
 
-    public class Cat : Animal
+    public class Cat1 : Animal_ABS
     {
         protected static int legs = 4;
         protected static bool eatMeat = true;
         protected static string sound = "meo meo";
 
-        public Cat(string typeName, string gender, string habitat, string food) : base(typeName, gender, habitat, food)
+        public Cat1(string typeName, string gender, string habitat, string food) : base(typeName, gender, habitat, food)
         {
             // this.typeName = typeName;
             // this.gender = gender;
@@ -100,13 +85,13 @@ namespace Learn_Unity_2d
             float[] location = new float[2] { 0, 0 };
             location[0] = x;
             location[1] = y;
-            Debug.Log($"{this.typeName} is moving by {Cat.legs} legs. \n Location of {this.typeName} is ({x}, {y})");
+            Debug.Log($"{this.typeName} is moving by {Cat1.legs} legs. \n Location of {this.typeName} is ({x}, {y})");
             return location;
         }
 
         public override string Eat(string food = "something")
         {
-            food = (Cat.eatMeat) ? "Meat" : "something";
+            food = (Cat1.eatMeat) ? "Meat" : "something";
             Debug.Log($"{this.typeName} is eating {food}");
             return food;
         }
@@ -114,28 +99,34 @@ namespace Learn_Unity_2d
         public override void Talk(string content = "something")
         {
             Debug.Log($"{this.typeName} is talking {content}");
-            Debug.Log($"{this.typeName} is saying {Cat.sound}");
+            Debug.Log($"{this.typeName} is saying {Cat1.sound}");
         }
     }
 
-    public class Bird : Animal
+    public class Bird1 : Animal_ABS
     {
         public static int wings = 2;
         protected new string food = "bugs";
         public static int legs = 2;
 
-        public Bird(string typeName, string gender, string habitat, string food) : base(typeName, gender, habitat, food)
+        public Bird1(string typeName, string gender, string habitat, string food) : base(typeName, gender, habitat, food)
         {
 
         }
 
-        public float[] Move(float x = 0, float y = 0, float z = 0)
+        public override float[] Move(float x = 0, float y = 0)
         {
-            float[] location = new float[3] { 0, 0, 0 };
+            float[] location = new float[2] { 0, 0 };
             location[0] = x;
             location[1] = y;
-            Debug.Log($"{this.typeName} is flying by {Bird.wings} wings. \n Location of {this.typeName} is ({x}, {y}, {z})");
+            Debug.Log($"{this.typeName} is flying by {Bird1.wings} wings. \n Location of {this.typeName} is ({x}, {y})");
             return location;
+        }
+
+        public override string Eat(string food = "something")
+        {
+            Debug.Log($"{this.typeName} is eating {food}");
+            return food;
         }
 
         public override void Talk(string content = "something")
@@ -144,20 +135,36 @@ namespace Learn_Unity_2d
         }
     }
 
-    public class Fish : Animal
+    public class Fish1 : Animal_ABS
     {
         public static string[] fishFoodList = { "seaweed", "little creature" };
-        public Fish(string typeName, string gender, string habitat, string food) : base(typeName, gender, habitat, food)
+        public Fish1(string typeName, string gender, string habitat, string food) : base(typeName, gender, habitat, food)
         {
 
         }
 
-        public void Eat()
+        public override float[] Move(float x, float y)
         {
-            foreach(var food in Fish.fishFoodList)
+            float[] location = new float[2] { 0, 0 };
+            location[0] = x;
+            location[1] = y;
+            Debug.Log($"{this.typeName} is moving. \n Location of {this.typeName} is ({x}, {y})");
+            return location;
+        }
+
+        public override string Eat(string food = "something")
+        {
+            foreach (var item in Fish1.fishFoodList)
             {
-                Debug.Log($"{this.TypeName} is eating {food}");
+                Debug.Log($"{this.TypeName} is eating {item}");
             }
+
+            return food;
+        }
+
+        public override void Talk(string content = "something")
+        {
+            Debug.Log($"{this.typeName} is talking {content}");
         }
 
         public void SplashWater()
