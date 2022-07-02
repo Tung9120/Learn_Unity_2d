@@ -26,7 +26,7 @@ namespace Learn_Unity_2d
         protected string mainboard;
         protected int ram;
         protected string cpu;
-        protected string powerSupplyUnit;
+        protected int powerSupplyUnit;
         protected string fan;
 
         public static string wifiAdress;
@@ -37,7 +37,7 @@ namespace Learn_Unity_2d
         {
             Debug.Log("A computer is created");
         }
-        public PC(string _case, string mainboard, int ram, string cpu, string powerSupplyUnit, string fan)
+        public PC(string _case, string mainboard, int ram, string cpu, int powerSupplyUnit, string fan)
         {
             this._case = _case;
             this.mainboard = mainboard;
@@ -45,6 +45,42 @@ namespace Learn_Unity_2d
             this.cpu = cpu;
             this.powerSupplyUnit = powerSupplyUnit;
             this.fan = fan;
+        }
+
+        public string _Case
+        {
+            set{_case = value;}
+            get{return _case;}
+        }
+
+        public string Mainboard
+        {
+            get {return mainboard;}
+            set {mainboard = value;}
+        }
+
+        public int Ram
+        {
+            get {return ram;}
+            set {ram = value;}
+        }
+
+        public string Cpu
+        {
+            get {return cpu;}
+            set {cpu = value;}
+        }
+
+        public int PowerSupplyUnit
+        {
+            get {return powerSupplyUnit;}
+            set {powerSupplyUnit = value;}
+        }
+
+        public string Fan
+        {
+            get {return fan;}
+            set {fan = value;}
         }
 
         public void Start()
