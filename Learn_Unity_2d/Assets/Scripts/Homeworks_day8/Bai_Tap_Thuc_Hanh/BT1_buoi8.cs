@@ -74,6 +74,12 @@ namespace Learn_Unity_2d
             return food;
         }
 
+        public virtual string Eat()
+        {
+            Debug.Log($"{this.typeName} is eating{this.food}");
+            return this.food;
+        }
+
         public virtual void Talk(string content = "something")
         {
             Debug.Log($"{this.typeName} is talking {content}");
@@ -111,6 +117,12 @@ namespace Learn_Unity_2d
             return food;
         }
 
+        public override string Eat()
+        {
+            Debug.Log($"{this.typeName} is eating{this.food}");
+            return this.food;
+        }
+
         public override void Talk(string content = "something")
         {
             Debug.Log($"{this.typeName} is talking {content}");
@@ -138,6 +150,18 @@ namespace Learn_Unity_2d
             return location;
         }
 
+        public override string Eat()
+        {
+            Debug.Log($"{this.typeName} is eating{this.food}");
+            return this.food;
+        }
+
+        public override string Eat(string food = "something")
+        {
+            Debug.Log($"{this.typeName} is eating {food}");
+            return food;
+        }
+
         public override void Talk(string content = "something")
         {
             Debug.Log($"{this.typeName} is singing {content}");
@@ -152,12 +176,22 @@ namespace Learn_Unity_2d
 
         }
 
-        public void Eat()
+        public new void Eat()
         {
-            foreach(var food in Fish.fishFoodList)
+            foreach (var food in Fish.fishFoodList)
             {
                 Debug.Log($"{this.TypeName} is eating {food}");
             }
+        }
+
+        public new string[] Eat(string food = "something")
+        {
+            foreach (var item in Fish.fishFoodList)
+            {
+                Debug.Log($"{this.TypeName} is eating {food}");
+            }
+
+            return Fish.fishFoodList;
         }
 
         public void SplashWater()

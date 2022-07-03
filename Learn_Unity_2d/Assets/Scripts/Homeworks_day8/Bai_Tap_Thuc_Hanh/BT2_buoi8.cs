@@ -62,6 +62,8 @@ namespace Learn_Unity_2d
 
         public abstract string Eat(string food = "something");
 
+        public abstract void Eat();
+
         public abstract void Talk(string content = "something");
     }
 
@@ -94,6 +96,11 @@ namespace Learn_Unity_2d
             food = (Cat1.eatMeat) ? "Meat" : "something";
             Debug.Log($"{this.typeName} is eating {food}");
             return food;
+        }
+
+        public override void Eat()
+        {
+            Debug.Log($"{this.typeName} is eating");
         }
 
         public override void Talk(string content = "something")
@@ -129,6 +136,11 @@ namespace Learn_Unity_2d
             return food;
         }
 
+        public override void Eat()
+        {
+            Debug.Log($"{this.typeName} is eating");
+        }
+
         public override void Talk(string content = "something")
         {
             Debug.Log($"{this.typeName} is singing {content}");
@@ -160,6 +172,11 @@ namespace Learn_Unity_2d
             }
 
             return food;
+        }
+
+        public override void Eat()
+        {
+            Debug.Log($"{this.typeName} is eating");
         }
 
         public override void Talk(string content = "something")
